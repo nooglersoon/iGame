@@ -9,6 +9,8 @@ import UIKit
 
 class MainViewController: UITabBarController {
     
+    let networkService: NetworkService = NetworkService.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,7 +24,7 @@ class MainViewController: UITabBarController {
     func setupTabBarItem() -> [UIViewController] {
         
         // Create your view controllers here
-        let viewController1 = UINavigationController(rootViewController: HomeViewController())
+        let viewController1 = UINavigationController(rootViewController: HomeViewController(service: networkService))
         viewController1.navigationBar.prefersLargeTitles = true
         
         let viewController2 = UIViewController()

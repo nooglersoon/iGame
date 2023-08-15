@@ -23,7 +23,7 @@ extension Endpoint {
     }
 
     var baseURL: String {
-        return "api.rawg.io/api/"
+        return "api.rawg.io"
     }
     
     var queryItems: [URLQueryItem]? {
