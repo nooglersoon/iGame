@@ -20,6 +20,11 @@
 		017A64A12A8B223700596474 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64A02A8B223700596474 /* HomeViewController.swift */; };
 		017A64A32A8B236200596474 /* GameCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64A22A8B236200596474 /* GameCardCell.swift */; };
 		017A64A52A8B2A0800596474 /* RemoteUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64A42A8B2A0800596474 /* RemoteUIImageView.swift */; };
+		017A64AC2A8B2F9F00596474 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64AB2A8B2F9F00596474 /* Endpoint.swift */; };
+		017A64AE2A8B2FDA00596474 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64AD2A8B2FDA00596474 /* HTTPMethod.swift */; };
+		017A64B02A8B300300596474 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64AF2A8B300300596474 /* RequestError.swift */; };
+		017A64B22A8B31CB00596474 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64B12A8B31CB00596474 /* HTTPClient.swift */; };
+		017A64B42A8B346E00596474 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64B32A8B346E00596474 /* Reachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +62,11 @@
 		017A64A02A8B223700596474 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		017A64A22A8B236200596474 /* GameCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCardCell.swift; sourceTree = "<group>"; };
 		017A64A42A8B2A0800596474 /* RemoteUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteUIImageView.swift; sourceTree = "<group>"; };
+		017A64AB2A8B2F9F00596474 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		017A64AD2A8B2FDA00596474 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		017A64AF2A8B300300596474 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
+		017A64B12A8B31CB00596474 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		017A64B32A8B346E00596474 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +117,7 @@
 		017A64662A8B11FC00596474 /* iGame */ = {
 			isa = PBXGroup;
 			children = (
+				017A64A92A8B2DEB00596474 /* Service */,
 				017A64A82A8B2BBD00596474 /* Main */,
 				017A64A62A8B2BA000596474 /* Common */,
 				017A649C2A8B221100596474 /* Modules */,
@@ -193,6 +204,34 @@
 				017A64752A8B11FD00596474 /* LaunchScreen.storyboard */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		017A64A92A8B2DEB00596474 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				017A64AA2A8B2E0200596474 /* NetworkService */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		017A64AA2A8B2E0200596474 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				017A64B52A8B360100596474 /* Base */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		017A64B52A8B360100596474 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				017A64AB2A8B2F9F00596474 /* Endpoint.swift */,
+				017A64AD2A8B2FDA00596474 /* HTTPMethod.swift */,
+				017A64AF2A8B300300596474 /* RequestError.swift */,
+				017A64B12A8B31CB00596474 /* HTTPClient.swift */,
+				017A64B32A8B346E00596474 /* Reachability.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,13 +365,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				017A646C2A8B11FC00596474 /* MainViewController.swift in Sources */,
+				017A64AC2A8B2F9F00596474 /* Endpoint.swift in Sources */,
+				017A64B22A8B31CB00596474 /* HTTPClient.swift in Sources */,
 				017A64A32A8B236200596474 /* GameCardCell.swift in Sources */,
+				017A64B02A8B300300596474 /* RequestError.swift in Sources */,
 				017A64A52A8B2A0800596474 /* RemoteUIImageView.swift in Sources */,
 				017A649B2A8B20FE00596474 /* GameListModel.swift in Sources */,
 				017A64722A8B11FC00596474 /* iGame.xcdatamodeld in Sources */,
 				017A64682A8B11FC00596474 /* AppDelegate.swift in Sources */,
 				017A646A2A8B11FC00596474 /* SceneDelegate.swift in Sources */,
+				017A64AE2A8B2FDA00596474 /* HTTPMethod.swift in Sources */,
 				017A64A12A8B223700596474 /* HomeViewController.swift in Sources */,
+				017A64B42A8B346E00596474 /* Reachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,7 +552,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -539,7 +583,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
