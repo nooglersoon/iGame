@@ -90,7 +90,7 @@ class GameCardCell: UICollectionViewCell {
             roundedImageView.heightAnchor.constraint(equalToConstant: 120),
             
             // Set up constraints for stackView
-            stackView.leadingAnchor.constraint(equalTo: roundedImageView.trailingAnchor, constant: 32),
+            stackView.leadingAnchor.constraint(equalTo: roundedImageView.trailingAnchor, constant: 24),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16)
         ])

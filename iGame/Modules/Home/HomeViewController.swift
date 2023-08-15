@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 class HomeViewController: UIViewController {
-        
+    
     private var collectionView: UICollectionView!
-    private var dataSource: UICollectionViewDiffableDataSource<Int, String>!
+    private var dataSource: UICollectionViewDiffableDataSource<Int, HomeViewCellModel>!
     
     let homeService: HomeServiceable
     
@@ -37,8 +37,8 @@ class HomeViewController: UIViewController {
             switch results {
             case .success(let lists):
                 if let results = lists.results {
-                    let items: [String] = results.map { game in
-                        return game.name ?? ""
+                    let items: [HomeViewCellModel] = results.map { game in
+                        return .init(item: game)
                     }
                     applySnapshot(with: items)
                 }
@@ -71,32 +71,36 @@ class HomeViewController: UIViewController {
     }
     
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Int, String>(collectionView: collectionView) {
-            (collectionView, indexPath, item) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Int, HomeViewCellModel>(collectionView: collectionView) {
+            (collectionView, indexPath, game) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GameCardCell
-            cell.configure(with: .init(
-                title: item,
-                description: item,
-                rating: 10,
-                imageUrl: item
-                )
-            )
+            if let item = game.item {
+                cell.configure(with: .init(
+                    title: item.name ?? "",
+                    description: item.released ?? "",
+                    rating: Int(item.rating ?? 0),
+                    imageUrl: item.backgroundImage ?? ""))
+            }
             return cell
         }
     }
     
     private func applyInitialSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
+        var snapshot = NSDiffableDataSourceSnapshot<Int, HomeViewCellModel>()
         snapshot.appendSections([0])
-        snapshot.appendItems(["Item 1", "Item 2", "Item 3"])
+        snapshot.appendItems([
+            HomeViewCellModel(item: nil),
+            HomeViewCellModel(item: nil),
+            HomeViewCellModel(item: nil)
+        ])
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     
-    private func applySnapshot(with newItems: [String]) {
+    private func applySnapshot(with newItems: [HomeViewCellModel]) {
         let snapshot = dataSource.snapshot()
         var items = snapshot.itemIdentifiers(inSection: 0)
         items = newItems
-        var newSnapshot = NSDiffableDataSourceSnapshot<Int, String>()
+        var newSnapshot = NSDiffableDataSourceSnapshot<Int, HomeViewCellModel>()
         newSnapshot.appendSections([0])
         newSnapshot.appendItems(items)
         dataSource.apply(newSnapshot)

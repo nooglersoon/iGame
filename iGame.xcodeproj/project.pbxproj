@@ -27,6 +27,7 @@
 		017A64B42A8B346E00596474 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64B32A8B346E00596474 /* Reachability.swift */; };
 		017A64B72A8B369400596474 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64B62A8B369400596474 /* HomeService.swift */; };
 		017A64B92A8B562900596474 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64B82A8B562900596474 /* NetworkService.swift */; };
+		017A64BE2A8B5FB300596474 /* HomeViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64BD2A8B5FB300596474 /* HomeViewCellModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		017A64B32A8B346E00596474 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		017A64B62A8B369400596474 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		017A64B82A8B562900596474 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		017A64BD2A8B5FB300596474 /* HomeViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCellModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 			children = (
 				017A64BC2A8B597D00596474 /* Interface */,
 				017A64A02A8B223700596474 /* HomeViewController.swift */,
+				017A64BD2A8B5FB300596474 /* HomeViewCellModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				017A64A32A8B236200596474 /* GameCardCell.swift in Sources */,
 				017A64B02A8B300300596474 /* RequestError.swift in Sources */,
 				017A64A52A8B2A0800596474 /* RemoteUIImageView.swift in Sources */,
+				017A64BE2A8B5FB300596474 /* HomeViewCellModel.swift in Sources */,
 				017A649B2A8B20FE00596474 /* GameListModel.swift in Sources */,
 				017A64722A8B11FC00596474 /* iGame.xcdatamodeld in Sources */,
 				017A64682A8B11FC00596474 /* AppDelegate.swift in Sources */,
