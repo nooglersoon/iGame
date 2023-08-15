@@ -70,7 +70,7 @@ class GameCardCell: UICollectionViewCell {
         descriptionLabel.text = model.description
         ratingLabel.text = "\(model.rating)"
         if let url = URL(string: model.imageUrl) {
-            roundedImageView.loadImage(from: url)
+            roundedImageView.configure(with: url)
         }
     }
     
