@@ -34,8 +34,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBarController = UITabBarController()
         
         // Create your view controllers here
-        let viewController1 = UIViewController()
-        viewController1.view.backgroundColor = .red
+        let viewController1 = UINavigationController(rootViewController: HomeViewController())
+        viewController1.navigationBar.prefersLargeTitles = true
         let viewController2 = UIViewController()
         viewController2.view.backgroundColor = .green
         

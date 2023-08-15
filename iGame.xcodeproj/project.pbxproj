@@ -16,6 +16,9 @@
 		017A64822A8B11FE00596474 /* iGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64812A8B11FE00596474 /* iGameTests.swift */; };
 		017A648C2A8B11FE00596474 /* iGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A648B2A8B11FE00596474 /* iGameUITests.swift */; };
 		017A648E2A8B11FE00596474 /* iGameUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A648D2A8B11FE00596474 /* iGameUITestsLaunchTests.swift */; };
+		017A649B2A8B20FE00596474 /* GameListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A649A2A8B20FE00596474 /* GameListModel.swift */; };
+		017A64A12A8B223700596474 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64A02A8B223700596474 /* HomeViewController.swift */; };
+		017A64A32A8B236200596474 /* GameCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64A22A8B236200596474 /* GameCardCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		017A64872A8B11FE00596474 /* iGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		017A648B2A8B11FE00596474 /* iGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iGameUITests.swift; sourceTree = "<group>"; };
 		017A648D2A8B11FE00596474 /* iGameUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iGameUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		017A649A2A8B20FE00596474 /* GameListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListModel.swift; sourceTree = "<group>"; };
+		017A64A02A8B223700596474 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		017A64A22A8B236200596474 /* GameCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCardCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,7 @@
 		017A64662A8B11FC00596474 /* iGame */ = {
 			isa = PBXGroup;
 			children = (
+				017A649C2A8B221100596474 /* Modules */,
 				017A64672A8B11FC00596474 /* AppDelegate.swift */,
 				017A64692A8B11FC00596474 /* SceneDelegate.swift */,
 				017A646B2A8B11FC00596474 /* ViewController.swift */,
@@ -106,6 +113,7 @@
 				017A64752A8B11FD00596474 /* LaunchScreen.storyboard */,
 				017A64782A8B11FD00596474 /* Info.plist */,
 				017A64702A8B11FC00596474 /* iGame.xcdatamodeld */,
+				017A649A2A8B20FE00596474 /* GameListModel.swift */,
 			);
 			path = iGame;
 			sourceTree = "<group>";
@@ -125,6 +133,39 @@
 				017A648D2A8B11FE00596474 /* iGameUITestsLaunchTests.swift */,
 			);
 			path = iGameUITests;
+			sourceTree = "<group>";
+		};
+		017A649C2A8B221100596474 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				017A649F2A8B222500596474 /* Favorites */,
+				017A649E2A8B221D00596474 /* Details */,
+				017A649D2A8B221900596474 /* Home */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		017A649D2A8B221900596474 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				017A64A02A8B223700596474 /* HomeViewController.swift */,
+				017A64A22A8B236200596474 /* GameCardCell.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		017A649E2A8B221D00596474 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		017A649F2A8B222500596474 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Favorites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +299,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				017A646C2A8B11FC00596474 /* ViewController.swift in Sources */,
+				017A64A32A8B236200596474 /* GameCardCell.swift in Sources */,
+				017A649B2A8B20FE00596474 /* GameListModel.swift in Sources */,
 				017A64722A8B11FC00596474 /* iGame.xcdatamodeld in Sources */,
 				017A64682A8B11FC00596474 /* AppDelegate.swift in Sources */,
 				017A646A2A8B11FC00596474 /* SceneDelegate.swift in Sources */,
+				017A64A12A8B223700596474 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
