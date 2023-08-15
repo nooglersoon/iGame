@@ -15,13 +15,12 @@ struct GameCardCellModel {
 }
 
 class GameCardCell: UICollectionViewCell {
-    let roundedImageView: UIImageView = {
-        let imageView = UIImageView()
+    let roundedImageView: RemoteImageView = {
+        let imageView = RemoteImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 20
-        imageView.backgroundColor = .yellow
         return imageView
     }()
     
@@ -69,6 +68,9 @@ class GameCardCell: UICollectionViewCell {
         titleLabel.text = model.title
         descriptionLabel.text = model.description
         ratingLabel.text = "\(model.rating)"
+        if let url = URL(string: "https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg") {
+            roundedImageView.loadImage(from: url)
+        }
     }
     
     private func setupUI() {
