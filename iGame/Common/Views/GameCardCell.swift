@@ -11,7 +11,7 @@ import UIKit
 struct GameCardCellModel {
     let title: String
     let description: String
-    let rating: Int
+    let rating: Double
     let imageUrl: String
 }
 
@@ -56,6 +56,24 @@ class GameCardCell: UICollectionViewCell {
         return stackView
     }()
     
+    let starIcon: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = .init(systemName: "star.fill")
+        imageView.tintColor = .orange
+        return imageView
+    }()
+    
+    let ratingStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 8
+        stackView.alignment = .center
+        return stackView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -78,7 +96,9 @@ class GameCardCell: UICollectionViewCell {
         contentView.addSubview(roundedImageView)
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(descriptionLabel)
-        stackView.addArrangedSubview(ratingLabel)
+        ratingStackView.addArrangedSubview(starIcon)
+        ratingStackView.addArrangedSubview(ratingLabel)
+        stackView.addArrangedSubview(ratingStackView)
         contentView.addSubview(stackView)
         
         NSLayoutConstraint.activate([
@@ -88,6 +108,9 @@ class GameCardCell: UICollectionViewCell {
             roundedImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             roundedImageView.widthAnchor.constraint(equalToConstant: 120),
             roundedImageView.heightAnchor.constraint(equalToConstant: 120),
+            
+            starIcon.widthAnchor.constraint(equalToConstant: 12),
+            starIcon.heightAnchor.constraint(equalToConstant: 12),
             
             // Set up constraints for stackView
             stackView.leadingAnchor.constraint(equalTo: roundedImageView.trailingAnchor, constant: 24),

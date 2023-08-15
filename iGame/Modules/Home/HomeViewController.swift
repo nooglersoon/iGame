@@ -78,7 +78,7 @@ class HomeViewController: UIViewController {
                 cell.configure(with: .init(
                     title: item.name ?? "",
                     description: item.released ?? "",
-                    rating: Int(item.rating ?? 0),
+                    rating: item.rating ?? 0,
                     imageUrl: item.backgroundImage ?? ""))
             }
             return cell
