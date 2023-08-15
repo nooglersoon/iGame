@@ -32,7 +32,7 @@ class HomeViewController: UIViewController {
         applyInitialSnapshot()
         
         Task {
-        
+            
             let results = await homeService.getGames()
             switch results {
             case .success(let lists):
@@ -59,10 +59,10 @@ class HomeViewController: UIViewController {
     }
     
     private func createLayout() -> UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(200))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(150))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
@@ -74,7 +74,13 @@ class HomeViewController: UIViewController {
         dataSource = UICollectionViewDiffableDataSource<Int, String>(collectionView: collectionView) {
             (collectionView, indexPath, item) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GameCardCell
-            cell.configure(with: .init(title: item, description: item, rating: 10))
+            cell.configure(with: .init(
+                title: item,
+                description: item,
+                rating: 10,
+                imageUrl: item
+                )
+            )
             return cell
         }
     }

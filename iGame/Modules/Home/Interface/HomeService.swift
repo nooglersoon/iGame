@@ -37,7 +37,7 @@ extension HomeEndpoint: Endpoint {
     var queryItems: [URLQueryItem]? {
         return [
             URLQueryItem(name: "page", value: "1"),
-            URLQueryItem(name: "page_size", value: "5"),
+            URLQueryItem(name: "page_size", value: "10"),
             URLQueryItem(name: "key", value: "d2f1740082ac4bfc8e0ad4f1ed969196")
         ]
     }

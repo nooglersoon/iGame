@@ -162,9 +162,8 @@
 		017A649D2A8B221900596474 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				017A64BC2A8B597D00596474 /* Interface */,
 				017A64A02A8B223700596474 /* HomeViewController.swift */,
-				017A64A22A8B236200596474 /* GameCardCell.swift */,
-				017A64B62A8B369400596474 /* HomeService.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -195,6 +194,7 @@
 		017A64A72A8B2BA600596474 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				017A64A22A8B236200596474 /* GameCardCell.swift */,
 				017A64A42A8B2A0800596474 /* RemoteUIImageView.swift */,
 			);
 			path = Views;
@@ -238,6 +238,14 @@
 				017A64B32A8B346E00596474 /* Reachability.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		017A64BC2A8B597D00596474 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				017A64B62A8B369400596474 /* HomeService.swift */,
+			);
+			path = Interface;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
