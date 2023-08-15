@@ -28,6 +28,7 @@
 		017A64B72A8B369400596474 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64B62A8B369400596474 /* HomeService.swift */; };
 		017A64B92A8B562900596474 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64B82A8B562900596474 /* NetworkService.swift */; };
 		017A64BE2A8B5FB300596474 /* HomeViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64BD2A8B5FB300596474 /* HomeViewCellModel.swift */; };
+		017A64C02A8B6E7B00596474 /* GameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64BF2A8B6E7B00596474 /* GameDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		017A64B62A8B369400596474 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		017A64B82A8B562900596474 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		017A64BD2A8B5FB300596474 /* HomeViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCellModel.swift; sourceTree = "<group>"; };
+		017A64BF2A8B6E7B00596474 /* GameDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 		017A649E2A8B221D00596474 /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				017A64BF2A8B6E7B00596474 /* GameDetailViewController.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				017A64722A8B11FC00596474 /* iGame.xcdatamodeld in Sources */,
 				017A64682A8B11FC00596474 /* AppDelegate.swift in Sources */,
 				017A64B92A8B562900596474 /* NetworkService.swift in Sources */,
+				017A64C02A8B6E7B00596474 /* GameDetailViewController.swift in Sources */,
 				017A646A2A8B11FC00596474 /* SceneDelegate.swift in Sources */,
 				017A64AE2A8B2FDA00596474 /* HTTPMethod.swift in Sources */,
 				017A64A12A8B223700596474 /* HomeViewController.swift in Sources */,

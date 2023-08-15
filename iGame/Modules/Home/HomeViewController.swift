@@ -77,7 +77,7 @@ class HomeViewController: UIViewController {
             if let item = game.item {
                 cell.configure(with: .init(
                     title: item.name ?? "",
-                    description: item.released ?? "",
+                    releaseDate: item.released ?? "",
                     rating: item.rating ?? 0,
                     imageUrl: item.backgroundImage ?? ""))
             }

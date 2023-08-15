@@ -10,7 +10,7 @@ import UIKit
 
 struct GameCardCellModel {
     let title: String
-    let description: String
+    let releaseDate: String
     let rating: Double
     let imageUrl: String
 }
@@ -32,7 +32,7 @@ class GameCardCell: UICollectionViewCell {
         return label
     }()
     
-    let descriptionLabel: UILabel = {
+    let releaseDate: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14)
@@ -85,7 +85,7 @@ class GameCardCell: UICollectionViewCell {
     
     func configure(with model: GameCardCellModel) {
         titleLabel.text = model.title
-        descriptionLabel.text = model.description
+        releaseDate.text = "Released on \(model.releaseDate)"
         ratingLabel.text = "\(model.rating)"
         if let url = URL(string: model.imageUrl) {
             roundedImageView.configure(with: url)
@@ -95,7 +95,7 @@ class GameCardCell: UICollectionViewCell {
     private func setupUI() {
         contentView.addSubview(roundedImageView)
         stackView.addArrangedSubview(titleLabel)
-        stackView.addArrangedSubview(descriptionLabel)
+        stackView.addArrangedSubview(releaseDate)
         ratingStackView.addArrangedSubview(starIcon)
         ratingStackView.addArrangedSubview(ratingLabel)
         stackView.addArrangedSubview(ratingStackView)

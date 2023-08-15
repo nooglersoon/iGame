@@ -27,8 +27,20 @@ class MainViewController: UITabBarController {
         let viewController1 = UINavigationController(rootViewController: HomeViewController(service: networkService))
         viewController1.navigationBar.prefersLargeTitles = true
         
-        let viewController2 = UIViewController()
-        viewController2.view.backgroundColor = .green
+        // Replace this with your actual game data
+        let sampleGame = GameModel(
+            title: "Sample Game Title",
+            releaseDate: "January 1, 2023",
+            rating: 4.5,
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...Lorem ipsum dolor sit amet, consectetur adipiscing elit...Lorem ipsum dolor sit amet, consectetur adipiscing elit...Lorem ipsum dolor sit amet, consectetur adipiscing elit...Lorem ipsum dolor sit amet, consectetur adipiscing elit...Lorem ipsum dolor sit amet, consectetur adipiscing elit...Lorem ipsum dolor sit amet, consectetur adipiscing elit...Lorem ipsum dolor sit amet, consectetur adipiscing elit...Lorem ipsum dolor sit amet, consectetur adipiscing elit...Lorem ipsum dolor sit amet, consectetur adipiscing elit...Lorem ipsum dolor sit amet, consectetur adipiscing elit...Lorem ipsum dolor sit amet, consectetur adipiscing elit...Lorem ipsum dolor sit amet, consectetur adipiscing elit...Lorem ipsum dolor sit amet, consectetur adipiscing elit...Lorem ipsum dolor sit amet, consectetur adipiscing elit...Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+        )
+
+        let gameDetailViewController = GameDetailViewController()
+        gameDetailViewController.game = sampleGame
+
+        // Present the game detail view controller as needed
+        
+        let viewController2 = UINavigationController(rootViewController: gameDetailViewController)
         
         // Create tab bar items
         let tabBarItem1 = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
