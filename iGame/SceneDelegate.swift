@@ -19,10 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         
         // Set Categories as Root ViewController
-        let rootViewController = ViewController()
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        navigationController.navigationBar.prefersLargeTitles = true
-        window.rootViewController = navigationController
+        let tabBarController = createTabBarController()
+        window.rootViewController = tabBarController
         
         // 4.
         window.makeKeyAndVisible()
@@ -30,6 +28,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // 5.
         self.window = window
         
+    }
+    
+    func createTabBarController() -> UITabBarController {
+        let tabBarController = UITabBarController()
+        
+        // Create your view controllers here
+        let viewController1 = UIViewController()
+        viewController1.view.backgroundColor = .red
+        let viewController2 = UIViewController()
+        viewController2.view.backgroundColor = .green
+        
+        // Create tab bar items
+        let tabBarItem1 = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
+        viewController1.tabBarItem = tabBarItem1
+
+        let tabBarItem2 = UITabBarItem(title: "Favorite", image: UIImage(systemName: "heart"), tag: 1)
+        viewController2.tabBarItem = tabBarItem2
+        
+        // Add view controllers to the tab bar controller
+        tabBarController.viewControllers = [viewController1, viewController2]
+        tabBarController.tabBar.backgroundColor = .white
+        
+        return tabBarController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
