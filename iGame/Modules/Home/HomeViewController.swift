@@ -144,7 +144,7 @@ extension HomeViewController: UICollectionViewDelegate {
         else { return }
         currentPage += 1
         Task {
-            await fetchData(page:currentPage, isFirstLoad: false)
+            await fetchData(page:currentPage, isFirstLoad: currentPage == 1)
         }
     }
     
