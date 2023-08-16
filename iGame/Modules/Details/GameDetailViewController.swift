@@ -66,7 +66,6 @@ class GameDetailViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         view.backgroundColor = .white
-        title = game?.name ?? ""
         setupNavigationBar()
         
         Task {
@@ -157,7 +156,6 @@ class GameDetailViewController: UIViewController {
         releaseDateLabel.text = game.released
         ratingLabel.text = "Rating: \(game.rating ?? 0)"
         descriptionLabel.text = game.description
-        title = game.name
         if let url = URL(string: game.backgroundImage ?? "") {
             bannerImageView.configure(with: url)
         }

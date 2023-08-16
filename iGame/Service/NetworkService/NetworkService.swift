@@ -7,19 +7,19 @@
 
 import Foundation
 
-class NetworkService: HTTPClient, HomeServiceable {
+class NetworkService: HTTPClient {
     
     static let shared = NetworkService()
     
     private init () {}
     
+}
+
+extension NetworkService: HomeServiceable, GameDetailServiceable {
+    
     func getGames() async -> Result<GameList, RequestError> {
         return await sendRequest(endpoint: HomeEndpoint.getGames, responseModel: GameList.self)
     }
-    
-}
-
-extension NetworkService: GameDetailServiceable {
     
     func getGameById(_ id: Int) async -> Result<Game, RequestError> {
         return await sendRequest(endpoint: HomeEndpoint.getGameById(id), responseModel: Game.self)
