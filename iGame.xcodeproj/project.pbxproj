@@ -36,6 +36,8 @@
 		01CE48652A8CD1EE00A27D1B /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CE48642A8CD1EE00A27D1B /* FavoritesViewController.swift */; };
 		01CE48672A8CD22B00A27D1B /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CE48662A8CD22B00A27D1B /* FavoritesViewModel.swift */; };
 		01CE48692A8D8F8F00A27D1B /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CE48682A8D8F8F00A27D1B /* EmptyStateView.swift */; };
+		01CE486B2A8D943200A27D1B /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CE486A2A8D943200A27D1B /* HomeViewModelTests.swift */; };
+		01CE486D2A8D990B00A27D1B /* MockNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CE486C2A8D990B00A27D1B /* MockNetworkService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,8 @@
 		01CE48642A8CD1EE00A27D1B /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		01CE48662A8CD22B00A27D1B /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		01CE48682A8D8F8F00A27D1B /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		01CE486A2A8D943200A27D1B /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
+		01CE486C2A8D990B00A27D1B /* MockNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				017A64812A8B11FE00596474 /* iGameTests.swift */,
+				01CE486A2A8D943200A27D1B /* HomeViewModelTests.swift */,
 			);
 			path = iGameTests;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 				017A64B82A8B562900596474 /* NetworkService.swift */,
 				018D948F2A8CB5DF00F5E77C /* MainEndpoint.swift */,
 				018D94912A8CB60800F5E77C /* Interface.swift */,
+				01CE486C2A8D990B00A27D1B /* MockNetworkService.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -433,6 +439,7 @@
 				017A64BE2A8B5FB300596474 /* HomeViewCellModel.swift in Sources */,
 				017A649B2A8B20FE00596474 /* GameListModel.swift in Sources */,
 				017A64722A8B11FC00596474 /* iGame.xcdatamodeld in Sources */,
+				01CE486D2A8D990B00A27D1B /* MockNetworkService.swift in Sources */,
 				018D948E2A8CB3CF00F5E77C /* PersistentManager.swift in Sources */,
 				018D94922A8CB60800F5E77C /* Interface.swift in Sources */,
 				017A64682A8B11FC00596474 /* AppDelegate.swift in Sources */,
@@ -453,6 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				017A64822A8B11FE00596474 /* iGameTests.swift in Sources */,
+				01CE486B2A8D943200A27D1B /* HomeViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

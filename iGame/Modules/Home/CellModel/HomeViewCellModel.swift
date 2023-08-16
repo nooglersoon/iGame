@@ -30,3 +30,21 @@ struct HomeViewCellModel: Hashable {
     }
     
 }
+
+extension Array where Element == HomeViewCellModel {
+    static func createPlaceholders() -> [HomeViewCellModel] {
+        return [
+            HomeViewCellModel(item: nil),
+            HomeViewCellModel(item: nil),
+            HomeViewCellModel(item: nil)
+        ]
+    }
+    
+    static func createMock() -> [HomeViewCellModel] {
+        return [
+            .init(item: .init(title: "Test", releaseDate: "2023-12-10", rating: 5.0, imageUrl: "test image")),
+            .init(item: .init(title: "Test", releaseDate: "2023-12-10", rating: 5.0, imageUrl: "test image")),
+            .init(item: .init(title: "Test", releaseDate: "2023-12-10", rating: 5.0, imageUrl: "test image"))
+        ]
+    }
+}
