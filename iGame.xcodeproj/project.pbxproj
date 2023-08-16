@@ -29,6 +29,7 @@
 		017A64B92A8B562900596474 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64B82A8B562900596474 /* NetworkService.swift */; };
 		017A64BE2A8B5FB300596474 /* HomeViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64BD2A8B5FB300596474 /* HomeViewCellModel.swift */; };
 		017A64C02A8B6E7B00596474 /* GameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64BF2A8B6E7B00596474 /* GameDetailViewController.swift */; };
+		018D948E2A8CB3CF00F5E77C /* PersistentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018D948D2A8CB3CF00F5E77C /* PersistentManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		017A64B82A8B562900596474 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		017A64BD2A8B5FB300596474 /* HomeViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCellModel.swift; sourceTree = "<group>"; };
 		017A64BF2A8B6E7B00596474 /* GameDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailViewController.swift; sourceTree = "<group>"; };
+		018D948D2A8CB3CF00F5E77C /* PersistentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +222,7 @@
 		017A64A92A8B2DEB00596474 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				018D948C2A8CB37A00F5E77C /* PersistentManager */,
 				017A64AA2A8B2E0200596474 /* NetworkService */,
 			);
 			path = Service;
@@ -252,6 +255,14 @@
 				017A64B62A8B369400596474 /* HomeService.swift */,
 			);
 			path = Interface;
+			sourceTree = "<group>";
+		};
+		018D948C2A8CB37A00F5E77C /* PersistentManager */ = {
+			isa = PBXGroup;
+			children = (
+				018D948D2A8CB3CF00F5E77C /* PersistentManager.swift */,
+			);
+			path = PersistentManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -394,6 +405,7 @@
 				017A64BE2A8B5FB300596474 /* HomeViewCellModel.swift in Sources */,
 				017A649B2A8B20FE00596474 /* GameListModel.swift in Sources */,
 				017A64722A8B11FC00596474 /* iGame.xcdatamodeld in Sources */,
+				018D948E2A8CB3CF00F5E77C /* PersistentManager.swift in Sources */,
 				017A64682A8B11FC00596474 /* AppDelegate.swift in Sources */,
 				017A64B92A8B562900596474 /* NetworkService.swift in Sources */,
 				017A64C02A8B6E7B00596474 /* GameDetailViewController.swift in Sources */,
