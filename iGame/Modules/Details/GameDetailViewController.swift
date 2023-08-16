@@ -87,6 +87,16 @@ class GameDetailViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
+        
+        viewModel.$isFavorite
+            .sink { [weak self] isFavorite in
+                guard let self else { return }
+                DispatchQueue.main.async {
+                    let navigationBarItem = self.navigationItem.rightBarButtonItem
+                    navigationBarItem?.image = .init(systemName: isFavorite ? "heart.fill" : "heart")
+                }
+            }
+            .store(in: &cancellables)
     }
     
     private func updateUI(with game: Game) {
@@ -106,17 +116,16 @@ private extension GameDetailViewController {
     
     func setupNavigationBar() {
         let loveButton = UIBarButtonItem(
-            image: .init(systemName: "heart.fill"),
+            image: .init(systemName: viewModel.isFavorite ? "heart.fill" : "heart"),
             style: .plain,
             target: self,
             action: #selector(loveButtonTapped)
         )
-        
         navigationItem.rightBarButtonItem = loveButton
     }
     
     @objc func loveButtonTapped() {
-        // Handle love button tap here
+        viewModel.toggleFavoritesButton()
     }
     
     func setupUI() {

@@ -138,8 +138,6 @@
 				017A64A62A8B2BA000596474 /* Common */,
 				017A649C2A8B221100596474 /* Modules */,
 				017A64782A8B11FD00596474 /* Info.plist */,
-				017A64702A8B11FC00596474 /* iGame.xcdatamodeld */,
-				017A649A2A8B20FE00596474 /* GameListModel.swift */,
 			);
 			path = iGame;
 			sourceTree = "<group>";
@@ -200,6 +198,7 @@
 		017A64A62A8B2BA000596474 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				01CE48632A8CC63700A27D1B /* Models */,
 				017A64732A8B11FD00596474 /* Assets.xcassets */,
 				017A64A72A8B2BA600596474 /* Views */,
 			);
@@ -272,6 +271,15 @@
 				017A64BD2A8B5FB300596474 /* HomeViewCellModel.swift */,
 			);
 			path = CellModel;
+			sourceTree = "<group>";
+		};
+		01CE48632A8CC63700A27D1B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				017A64702A8B11FC00596474 /* iGame.xcdatamodeld */,
+				017A649A2A8B20FE00596474 /* GameListModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

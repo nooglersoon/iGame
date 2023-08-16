@@ -17,7 +17,7 @@ class PersistenceManager {
     
     // Defined as private to prevent PersistenceManager initialization outside this class
     private init() {
-        container = NSPersistentContainer(name: "TodoModel")
+        container = NSPersistentContainer(name: "iGame")
         container.loadPersistentStores { storeDescription, error in
             guard error == nil else {
                 fatalError("Error occured: \(String(describing: error))")
