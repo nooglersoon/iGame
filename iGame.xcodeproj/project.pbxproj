@@ -172,8 +172,8 @@
 		017A649D2A8B221900596474 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				01CE48602A8CC01100A27D1B /* CellModel */,
 				017A64A02A8B223700596474 /* HomeViewController.swift */,
-				017A64BD2A8B5FB300596474 /* HomeViewCellModel.swift */,
 				01CE485E2A8CB95D00A27D1B /* HomeViewModel.swift */,
 			);
 			path = Home;
@@ -261,6 +261,14 @@
 				018D948D2A8CB3CF00F5E77C /* PersistentManager.swift */,
 			);
 			path = PersistentManager;
+			sourceTree = "<group>";
+		};
+		01CE48602A8CC01100A27D1B /* CellModel */ = {
+			isa = PBXGroup;
+			children = (
+				017A64BD2A8B5FB300596474 /* HomeViewCellModel.swift */,
+			);
+			path = CellModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -42,6 +42,53 @@ class HomeViewController: UIViewController {
         
     }
     
+    // Setup Observers
+    
+    private func setupObservers() {
+        
+        viewModel.$items
+            .sink { [weak self] items in
+                guard let self else { return }
+                self.applySnapshot(with: items)
+            }
+            .store(in: &cancellables)
+    }
+    
+}
+
+// MARK: Setup DataSource and Layout
+
+private extension HomeViewController {
+    
+    func configureDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Int, HomeViewCellModel>(collectionView: collectionView) {
+            (collectionView, indexPath, game) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GameCardCell
+            if let item = game.item {
+                cell.configure(with: .init(
+                    title: item.name ?? "",
+                    releaseDate: item.released ?? "",
+                    rating: item.rating ?? 0,
+                    imageUrl: item.backgroundImage ?? ""))
+            }
+            return cell
+        }
+    }
+    
+    func applyInitialSnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, HomeViewCellModel>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(viewModel.items)
+        dataSource.apply(snapshot, animatingDifferences: false)
+    }
+    
+    func applySnapshot(with newItems: [HomeViewCellModel]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, HomeViewCellModel>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(newItems)
+        dataSource.apply(snapshot)
+    }
+    
     private func setupCollectionView() {
         let layout = createLayout()
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
@@ -64,46 +111,9 @@ class HomeViewController: UIViewController {
         return layout
     }
     
-    private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Int, HomeViewCellModel>(collectionView: collectionView) {
-            (collectionView, indexPath, game) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GameCardCell
-            if let item = game.item {
-                cell.configure(with: .init(
-                    title: item.name ?? "",
-                    releaseDate: item.released ?? "",
-                    rating: item.rating ?? 0,
-                    imageUrl: item.backgroundImage ?? ""))
-            }
-            return cell
-        }
-    }
-    
-    private func applyInitialSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, HomeViewCellModel>()
-        snapshot.appendSections([0])
-        snapshot.appendItems(viewModel.items)
-        dataSource.apply(snapshot, animatingDifferences: false)
-    }
-    
-    private func setupObservers() {
-        
-        viewModel.$items
-            .sink { [weak self] items in
-                guard let self else { return }
-                self.applySnapshot(with: items)
-            }
-            .store(in: &cancellables)
-        
-    }
-    
-    private func applySnapshot(with newItems: [HomeViewCellModel]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, HomeViewCellModel>()
-        snapshot.appendSections([0])
-        snapshot.appendItems(newItems)
-        dataSource.apply(snapshot)
-    }
 }
+
+// MARK: UICollectionViewDelegate
 
 extension HomeViewController: UICollectionViewDelegate {
     
