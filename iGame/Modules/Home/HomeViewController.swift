@@ -16,6 +16,13 @@ class HomeViewController: UIViewController {
     
     private let viewModel: HomeViewModel = HomeViewModel()
     
+    private let emptyStateView: EmptyStateView = {
+        let view = EmptyStateView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
+        return view
+    }()
+    
     private var cancellables: Set<AnyCancellable> = []
     
     init() {
@@ -31,7 +38,7 @@ class HomeViewController: UIViewController {
         
         title = "iGame"
         
-        setupCollectionView()
+        setupViews()
         configureDataSource()
         applyInitialSnapshot()
         observeState()
@@ -49,6 +56,11 @@ class HomeViewController: UIViewController {
             .sink { [weak self] items in
                 guard let self else { return }
                 self.applySnapshot(with: items)
+                if items.isEmpty {
+                    updateEmptyState(showEmptyState: true)
+                } else {
+                    updateEmptyState(showEmptyState: false)
+                }
             }
             .store(in: &cancellables)
     }
@@ -98,6 +110,18 @@ private extension HomeViewController {
         view.addSubview(collectionView)
     }
     
+    private func setupViews() {
+        setupCollectionView()
+        emptyStateView.configure(with: "Failed to fetch the data")
+        view.addSubview(emptyStateView)
+        NSLayoutConstraint.activate([
+            emptyStateView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            emptyStateView.topAnchor.constraint(equalTo: view.topAnchor),
+            emptyStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            emptyStateView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+    
     private func createLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -108,6 +132,12 @@ private extension HomeViewController {
         let section = NSCollectionLayoutSection(group: group)
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
+    }
+    
+    private func updateEmptyState(showEmptyState: Bool){
+        DispatchQueue.main.async {
+            self.emptyStateView.isHidden = !showEmptyState
+        }
     }
     
 }

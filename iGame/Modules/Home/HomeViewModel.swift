@@ -50,7 +50,8 @@ class HomeViewModel {
                 updateItems(isFirstLoad: currentPage == 1, newItems: items)
             }
         default:
-            self.isRequestInFlight = false
+            updateItems(isFirstLoad: currentPage == 1, newItems: [])
+            isRequestInFlight = false
             break
         }
     }
