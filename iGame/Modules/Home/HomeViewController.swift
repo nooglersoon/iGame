@@ -15,6 +15,9 @@ class HomeViewController: UIViewController {
     
     let homeService: HomeServiceable
     
+    var isRequestInFlight: Bool = false
+    var currentPage: Int = 1
+    
     init(service: HomeServiceable) {
         self.homeService = service
         super.init(nibName: nil, bundle: nil)
@@ -32,19 +35,8 @@ class HomeViewController: UIViewController {
         applyInitialSnapshot()
         
         Task {
-            
-            let results = await homeService.getGames()
-            switch results {
-            case .success(let lists):
-                if let results = lists.results {
-                    let items: [HomeViewCellModel] = results.map { game in
-                        return .init(item: game)
-                    }
-                    applySnapshot(with: items)
-                }
-            default:
-                break
-            }
+            guard !isRequestInFlight else { return }
+            await fetchData(page: currentPage, isFirstLoad: true)
         }
         
     }
@@ -97,14 +89,36 @@ class HomeViewController: UIViewController {
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     
-    private func applySnapshot(with newItems: [HomeViewCellModel]) {
+    private func applySnapshot(with newItems: [HomeViewCellModel], isFirstLoad: Bool) {
         let snapshot = dataSource.snapshot()
         var items = snapshot.itemIdentifiers(inSection: 0)
-        items = newItems
+        if isFirstLoad {
+            items = newItems
+        } else {
+            items += newItems
+        }
         var newSnapshot = NSDiffableDataSourceSnapshot<Int, HomeViewCellModel>()
         newSnapshot.appendSections([0])
         newSnapshot.appendItems(items)
         dataSource.apply(newSnapshot)
+    }
+    
+    private func fetchData(page: Int, isFirstLoad: Bool) async {
+        isRequestInFlight = true
+        let results = await homeService.getGames(page: page)
+        switch results {
+        case .success(let lists):
+            self.isRequestInFlight = false
+            if let results = lists.results {
+                let items: [HomeViewCellModel] = results.map { game in
+                    return .init(item: game)
+                }
+                applySnapshot(with: items, isFirstLoad: isFirstLoad)
+            }
+        default:
+            self.isRequestInFlight = false
+            break
+        }
     }
     
 }
@@ -118,6 +132,19 @@ extension HomeViewController: UICollectionViewDelegate {
             let id = game.id {
             let viewController = GameDetailViewController(id: id, service: NetworkService.shared)
             navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let totalItems = dataSource.snapshot().numberOfItems(inSection: 0)
+        guard
+            !isRequestInFlight,
+            totalItems > 3,
+            totalItems - indexPath.row == 2
+        else { return }
+        currentPage += 1
+        Task {
+            await fetchData(page:currentPage, isFirstLoad: false)
         }
     }
     

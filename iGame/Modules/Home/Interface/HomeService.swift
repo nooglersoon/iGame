@@ -9,6 +9,7 @@ import Foundation
 
 protocol HomeServiceable {
     func getGames() async -> Result<GameList, RequestError>
+    func getGames(page: Int) async -> Result<GameList, RequestError>
 }
 
 protocol GameDetailServiceable {
@@ -17,13 +18,14 @@ protocol GameDetailServiceable {
 
 enum HomeEndpoint {
     case getGames
+    case getGamesPage(Int)
     case getGameById(Int)
 }
 
 extension HomeEndpoint: Endpoint {
     var path: String {
         switch self {
-        case .getGames: return "/api/games"
+        case .getGames, .getGamesPage: return "/api/games"
         case let .getGameById(id): return "/api/games/\(id)"
         }
     }
@@ -45,6 +47,12 @@ extension HomeEndpoint: Endpoint {
         case .getGames:
             return [
                 URLQueryItem(name: "page", value: "1"),
+                URLQueryItem(name: "page_size", value: "10"),
+                URLQueryItem(name: "key", value: "d2f1740082ac4bfc8e0ad4f1ed969196")
+            ]
+        case let .getGamesPage(page):
+            return [
+                URLQueryItem(name: "page", value: "\(page)"),
                 URLQueryItem(name: "page_size", value: "10"),
                 URLQueryItem(name: "key", value: "d2f1740082ac4bfc8e0ad4f1ed969196")
             ]

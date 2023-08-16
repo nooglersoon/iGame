@@ -21,6 +21,10 @@ extension NetworkService: HomeServiceable, GameDetailServiceable {
         return await sendRequest(endpoint: HomeEndpoint.getGames, responseModel: GameList.self)
     }
     
+    func getGames(page: Int) async -> Result<GameList, RequestError> {
+        return await sendRequest(endpoint: HomeEndpoint.getGamesPage(page), responseModel: GameList.self)
+    }
+    
     func getGameById(_ id: Int) async -> Result<Game, RequestError> {
         return await sendRequest(endpoint: HomeEndpoint.getGameById(id), responseModel: Game.self)
     }
