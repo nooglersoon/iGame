@@ -7,8 +7,24 @@
 
 import Foundation
 import UIKit
+import Combine
 
 class GameDetailViewController: UIViewController {
+    
+    private let id: Int
+    
+    private let viewModel: GameDetailViewModel = GameDetailViewModel()
+
+    private var cancellables: Set<AnyCancellable> = []
+    
+    init(id: Int) {
+        self.id = id
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     let bannerImageView: RemoteImageView = {
         let bannerImageView = RemoteImageView(frame: .zero)
@@ -47,41 +63,48 @@ class GameDetailViewController: UIViewController {
         return descriptionLabel
     }()
     
-    
-    let id: Int
-    let service: GameDetailServiceable
-    var game: Game?
-    
-    init(id: Int, service: GameDetailServiceable) {
-        self.id = id
-        self.service = service
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         view.backgroundColor = .white
         setupNavigationBar()
+        observeState()
         
         Task {
-            let results = await service.getGameById(id)
-            switch results {
-            case .success(let game):
-                self.game = game
-                self.updateUI(with: game)
-            case .failure(let error):
-                print(error)
-            }
+            await viewModel.fetchData(id: id)
         }
         
     }
     
-    private func setupNavigationBar() {
+    private func observeState() {
+        viewModel.$game
+            .sink { [weak self] game in
+                guard
+                    let game,
+                    let self else { return }
+                DispatchQueue.main.async {
+                    self.updateUI(with: game)
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func updateUI(with game: Game) {
+        titleLabel.text = game.name
+        releaseDateLabel.text = game.released
+        ratingLabel.text = "Rating: \(game.rating ?? 0)"
+        descriptionLabel.text = game.description
+        if let url = URL(string: game.backgroundImage ?? "") {
+            bannerImageView.configure(with: url)
+        }
+    }
+}
+
+// MARK: Setup UI
+
+private extension GameDetailViewController {
+    
+    func setupNavigationBar() {
         let loveButton = UIBarButtonItem(
             image: .init(systemName: "heart.fill"),
             style: .plain,
@@ -92,11 +115,11 @@ class GameDetailViewController: UIViewController {
         navigationItem.rightBarButtonItem = loveButton
     }
     
-    @objc private func loveButtonTapped() {
+    @objc func loveButtonTapped() {
         // Handle love button tap here
     }
     
-    private func setupUI() {
+    func setupUI() {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
@@ -149,15 +172,5 @@ class GameDetailViewController: UIViewController {
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
-    }
-    
-    private func updateUI(with game: Game) {
-        titleLabel.text = game.name
-        releaseDateLabel.text = game.released
-        ratingLabel.text = "Rating: \(game.rating ?? 0)"
-        descriptionLabel.text = game.description
-        if let url = URL(string: game.backgroundImage ?? "") {
-            bannerImageView.configure(with: url)
-        }
     }
 }

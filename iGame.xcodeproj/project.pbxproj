@@ -32,6 +32,7 @@
 		018D94902A8CB5DF00F5E77C /* MainEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018D948F2A8CB5DF00F5E77C /* MainEndpoint.swift */; };
 		018D94922A8CB60800F5E77C /* Interface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018D94912A8CB60800F5E77C /* Interface.swift */; };
 		01CE485F2A8CB95D00A27D1B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CE485E2A8CB95D00A27D1B /* HomeViewModel.swift */; };
+		01CE48622A8CC13600A27D1B /* GameDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CE48612A8CC13600A27D1B /* GameDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		018D948F2A8CB5DF00F5E77C /* MainEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEndpoint.swift; sourceTree = "<group>"; };
 		018D94912A8CB60800F5E77C /* Interface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interface.swift; sourceTree = "<group>"; };
 		01CE485E2A8CB95D00A27D1B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		01CE48612A8CC13600A27D1B /* GameDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				017A64BF2A8B6E7B00596474 /* GameDetailViewController.swift */,
+				01CE48612A8CC13600A27D1B /* GameDetailViewModel.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				017A646C2A8B11FC00596474 /* MainViewController.swift in Sources */,
+				01CE48622A8CC13600A27D1B /* GameDetailViewModel.swift in Sources */,
 				017A64AC2A8B2F9F00596474 /* Endpoint.swift in Sources */,
 				017A64B22A8B31CB00596474 /* HTTPClient.swift in Sources */,
 				01CE485F2A8CB95D00A27D1B /* HomeViewModel.swift in Sources */,

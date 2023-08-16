@@ -34,7 +34,7 @@ class HomeViewController: UIViewController {
         setupCollectionView()
         configureDataSource()
         applyInitialSnapshot()
-        setupObservers()
+        observeState()
         
         Task {
             await viewModel.fetchData()
@@ -44,8 +44,7 @@ class HomeViewController: UIViewController {
     
     // Setup Observers
     
-    private func setupObservers() {
-        
+    private func observeState() {
         viewModel.$items
             .sink { [weak self] items in
                 guard let self else { return }
@@ -122,7 +121,7 @@ extension HomeViewController: UICollectionViewDelegate {
         if
             let game = selectedGameViewModel.item,
             let id = game.id {
-            let viewController = GameDetailViewController(id: id, service: NetworkService.shared)
+            let viewController = GameDetailViewController(id: id)
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
