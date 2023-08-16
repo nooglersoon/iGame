@@ -11,12 +11,14 @@ struct HomeViewCellModel: Hashable {
     
     let id: UUID
     let isLoading: Bool
-    let item: Game?
+    let gameId: Int?
+    let item: GameCardCellModel?
     
-    init(item: Game?, isLoading: Bool = true) {
+    init(item: GameCardCellModel?, isLoading: Bool = true, gameId: Int? = nil) {
         self.id = UUID()
         self.item = item
         self.isLoading = isLoading
+        self.gameId = gameId
     }
     
     static func == (lhs: HomeViewCellModel, rhs: HomeViewCellModel) -> Bool {

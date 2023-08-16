@@ -38,8 +38,14 @@ class HomeViewModel {
         case .success(let lists):
             self.isRequestInFlight = false
             if let results = lists.results {
-                let items: [HomeViewCellModel] = results.map { game in
-                    return .init(item: game)
+                let items: [HomeViewCellModel] = results.map { item in
+                    return .init(
+                        item: .init(
+                            title: item.name ?? "",
+                            releaseDate: item.released ?? "",
+                            rating: item.rating ?? 0,
+                            imageUrl: item.backgroundImage ?? ""), gameId: item.id
+                    )
                 }
                 updateItems(isFirstLoad: currentPage == 1, newItems: items)
             }

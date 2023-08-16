@@ -9,12 +9,12 @@ import Foundation
 import UIKit
 import Combine
 
-class HomeViewController: UIViewController {
+class FavoritesViewController: UIViewController {
     
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Int, HomeViewCellModel>!
     
-    private let viewModel: HomeViewModel = HomeViewModel()
+    private let viewModel: FavoritesViewModel = FavoritesViewModel()
     
     private var cancellables: Set<AnyCancellable> = []
     
@@ -29,17 +29,20 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "iGame"
+        title = "Favorites"
         
         setupCollectionView()
         configureDataSource()
         applyInitialSnapshot()
         observeState()
-        
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         Task {
             await viewModel.fetchData()
         }
-        
     }
     
     // Setup Observers
@@ -57,18 +60,14 @@ class HomeViewController: UIViewController {
 
 // MARK: Setup DataSource and Layout
 
-private extension HomeViewController {
+private extension FavoritesViewController {
     
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Int, HomeViewCellModel>(collectionView: collectionView) {
             (collectionView, indexPath, game) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GameCardCell
             if let item = game.item {
-                cell.configure(with: .init(
-                    title: item.title,
-                    releaseDate: item.releaseDate,
-                    rating: item.rating,
-                    imageUrl: item.imageUrl))
+                cell.configure(with: item)
             }
             return cell
         }
@@ -114,19 +113,14 @@ private extension HomeViewController {
 
 // MARK: UICollectionViewDelegate
 
-extension HomeViewController: UICollectionViewDelegate {
+extension FavoritesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedGameViewModel = viewModel.items[indexPath.row]
-        if
-            let id = selectedGameViewModel.gameId {
+        if let id = selectedGameViewModel.gameId {
             let viewController = GameDetailViewController(id: id)
             navigationController?.pushViewController(viewController, animated: true)
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        viewModel.checkIfEnableFetchData(currentRow: indexPath.row)
     }
     
 }

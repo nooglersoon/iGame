@@ -27,12 +27,9 @@ class MainViewController: UITabBarController {
         let viewController1 = UINavigationController(rootViewController: HomeViewController())
         viewController1.navigationBar.prefersLargeTitles = true
 
-        let vc = UIViewController()
-        vc.view.backgroundColor = .lightGray
-
-        // Present the game detail view controller as needed
-        
-        let viewController2 = UINavigationController(rootViewController: vc)
+        // Create your view controllers here
+        let viewController2 = UINavigationController(rootViewController: FavoritesViewController())
+        viewController2.navigationBar.prefersLargeTitles = true
         
         // Create tab bar items
         let tabBarItem1 = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
