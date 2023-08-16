@@ -54,6 +54,7 @@ class HomeViewController: UIViewController {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .white
+        collectionView.delegate = self
         collectionView.register(GameCardCell.self, forCellWithReuseIdentifier: "Cell")
         view.addSubview(collectionView)
     }
@@ -104,6 +105,20 @@ class HomeViewController: UIViewController {
         newSnapshot.appendSections([0])
         newSnapshot.appendItems(items)
         dataSource.apply(newSnapshot)
+    }
+    
+}
+
+extension HomeViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedGameViewModel = dataSource.snapshot().itemIdentifiers[indexPath.row]
+        if
+            let game = selectedGameViewModel.item,
+            let id = game.id {
+            let viewController = GameDetailViewController(id: id, service: NetworkService.shared)
+            navigationController?.pushViewController(viewController, animated: true)
+        }
     }
     
 }

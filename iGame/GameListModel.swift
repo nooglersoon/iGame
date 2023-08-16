@@ -55,7 +55,7 @@ struct YearYear: Codable {
 // MARK: - Result
 struct Game: Codable {
     let id: Int?
-    let slug, name, released: String?
+    let slug, name, released, description: String?
     let tba: Bool?
     let backgroundImage: String?
     let rating: Double?
@@ -78,7 +78,7 @@ struct Game: Codable {
     let shortScreenshots: [ShortScreenshot]?
 
     enum CodingKeys: String, CodingKey {
-        case id, slug, name, released, tba
+        case id, slug, name, released, tba, description
         case backgroundImage = "background_image"
         case rating
         case ratingTop = "rating_top"

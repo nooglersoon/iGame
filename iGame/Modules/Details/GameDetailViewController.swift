@@ -10,14 +10,76 @@ import UIKit
 
 class GameDetailViewController: UIViewController {
     
-    var game: GameModel? // Replace with your actual game model
+    let bannerImageView: RemoteImageView = {
+        let bannerImageView = RemoteImageView(frame: .zero)
+        bannerImageView.translatesAutoresizingMaskIntoConstraints = false
+        bannerImageView.contentMode = .scaleAspectFill
+        bannerImageView.clipsToBounds = true
+        return bannerImageView
+    }()
+    
+    let titleLabel: UILabel = {
+        let titleLabel = UILabel()
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        return titleLabel
+    }()
+    
+    let releaseDateLabel: UILabel = {
+        let releaseDateLabel = UILabel()
+        releaseDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        releaseDateLabel.font = UIFont.systemFont(ofSize: 18)
+        return releaseDateLabel
+    }()
+    
+    let ratingLabel: UILabel = {
+        let ratingLabel = UILabel()
+        ratingLabel.translatesAutoresizingMaskIntoConstraints = false
+        ratingLabel.font = UIFont.systemFont(ofSize: 16)
+        return ratingLabel
+    }()
+    
+    let descriptionLabel: UILabel = {
+        let descriptionLabel = UILabel()
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.font = UIFont.systemFont(ofSize: 12)
+        return descriptionLabel
+    }()
+    
+    
+    let id: Int
+    let service: GameDetailServiceable
+    var game: Game?
+    
+    init(id: Int, service: GameDetailServiceable) {
+        self.id = id
+        self.service = service
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         view.backgroundColor = .white
-        title = "Game name"
+        title = game?.name ?? ""
         setupNavigationBar()
+        
+        Task {
+            let results = await service.getGameById(id)
+            switch results {
+            case .success(let game):
+                self.game = game
+                self.updateUI(with: game)
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
     }
     
     private func setupNavigationBar() {
@@ -59,37 +121,10 @@ class GameDetailViewController: UIViewController {
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
         
-        let bannerImageView = UIImageView()
-        bannerImageView.translatesAutoresizingMaskIntoConstraints = false
-        bannerImageView.contentMode = .scaleAspectFill
-        bannerImageView.clipsToBounds = true
-        bannerImageView.backgroundColor = .brown
-        bannerImageView.image = UIImage(named: "game_banner") // Replace with your image
         contentView.addSubview(bannerImageView)
-        
-        let titleLabel = UILabel()
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        titleLabel.text = game?.title // Set the game title
         contentView.addSubview(titleLabel)
-        
-        let releaseDateLabel = UILabel()
-        releaseDateLabel.translatesAutoresizingMaskIntoConstraints = false
-        releaseDateLabel.text = game?.releaseDate
-        releaseDateLabel.font = UIFont.systemFont(ofSize: 18)
         contentView.addSubview(releaseDateLabel)
-        
-        let ratingLabel = UILabel()
-        ratingLabel.translatesAutoresizingMaskIntoConstraints = false
-        ratingLabel.text = "Rating: \(game?.rating ?? 0.0)"
-        ratingLabel.font = UIFont.systemFont(ofSize: 16)
         contentView.addSubview(ratingLabel)
-        
-        let descriptionLabel = UILabel()
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.numberOfLines = 0
-        descriptionLabel.text = game?.description
-        descriptionLabel.font = UIFont.systemFont(ofSize: 12)
         contentView.addSubview(descriptionLabel)
         
         NSLayoutConstraint.activate([
@@ -112,15 +147,19 @@ class GameDetailViewController: UIViewController {
             
             descriptionLabel.topAnchor.constraint(equalTo: ratingLabel.bottomAnchor, constant: 16),
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
     }
-}
-
-// Replace this with your actual GameModel structure
-struct GameModel {
-    var title: String
-    var releaseDate: String
-    var rating: Double
-    var description: String
+    
+    private func updateUI(with game: Game) {
+        titleLabel.text = game.name
+        releaseDateLabel.text = game.released
+        ratingLabel.text = "Rating: \(game.rating ?? 0)"
+        descriptionLabel.text = game.description
+        title = game.name
+        if let url = URL(string: game.backgroundImage ?? "") {
+            bannerImageView.configure(with: url)
+        }
+    }
 }

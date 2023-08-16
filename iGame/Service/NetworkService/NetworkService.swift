@@ -18,3 +18,11 @@ class NetworkService: HTTPClient, HomeServiceable {
     }
     
 }
+
+extension NetworkService: GameDetailServiceable {
+    
+    func getGameById(_ id: Int) async -> Result<Game, RequestError> {
+        return await sendRequest(endpoint: HomeEndpoint.getGameById(id), responseModel: Game.self)
+    }
+    
+}
