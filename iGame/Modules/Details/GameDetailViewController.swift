@@ -14,7 +14,7 @@ class GameDetailViewController: UIViewController {
     private let id: Int
     
     private let viewModel: GameDetailViewModel = GameDetailViewModel()
-
+    
     private var cancellables: Set<AnyCancellable> = []
     
     init(id: Int) {
@@ -100,13 +100,21 @@ class GameDetailViewController: UIViewController {
     }
     
     private func updateUI(with game: Game) {
+        title = game.name
         titleLabel.text = game.name
         releaseDateLabel.text = game.released
         ratingLabel.text = "Rating: \(game.rating ?? 0)"
-        descriptionLabel.text = game.description
         if let url = URL(string: game.backgroundImage ?? "") {
             bannerImageView.configure(with: url)
         }
+        
+        if let description = game.description, let attributedString = try? NSAttributedString(
+            data: description.data(using: .utf8)!,
+            options: [.documentType: NSAttributedString.DocumentType.html],
+            documentAttributes: nil) {
+            descriptionLabel.attributedText = attributedString
+        }
+        
     }
 }
 
@@ -122,6 +130,8 @@ private extension GameDetailViewController {
             action: #selector(loveButtonTapped)
         )
         navigationItem.rightBarButtonItem = loveButton
+        
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     @objc func loveButtonTapped() {
