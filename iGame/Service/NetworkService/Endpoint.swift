@@ -1,19 +1,11 @@
 //
-//  HomeService.swift
+//  Endpoint.swift
 //  iGame
 //
-//  Created by Fauzi Achmad B D on 15/08/23.
+//  Created by Fauzi Achmad B D on 16/08/23.
 //
 
 import Foundation
-
-protocol HomeServiceable {
-    func getGames(page: Int) async -> Result<GameList, RequestError>
-}
-
-protocol GameDetailServiceable {
-    func getGameById(_ id: Int) async -> Result<Game, RequestError>
-}
 
 enum HomeEndpoint {
     case getGames(Int)
@@ -53,6 +45,5 @@ extension HomeEndpoint: Endpoint {
                 URLQueryItem(name: "key", value: "d2f1740082ac4bfc8e0ad4f1ed969196")
             ]
         }
-    }
-    
+    }    
 }
