@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum HomeEndpoint {
+enum MainEndpoint {
     case getGames(Int)
     case getGameById(Int)
 }
 
-extension HomeEndpoint: Endpoint {
+extension MainEndpoint: Endpoint {
     var path: String {
         switch self {
         case .getGames: return "/api/games"

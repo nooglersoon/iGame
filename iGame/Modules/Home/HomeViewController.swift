@@ -7,19 +7,18 @@
 
 import Foundation
 import UIKit
+import Combine
 
 class HomeViewController: UIViewController {
     
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Int, HomeViewCellModel>!
     
-    let homeService: HomeServiceable
+    private let viewModel: HomeViewModel = HomeViewModel()
     
-    var isRequestInFlight: Bool = false
-    var currentPage: Int = 1
+    private var cancellables: Set<AnyCancellable> = []
     
-    init(service: HomeServiceable) {
-        self.homeService = service
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -29,14 +28,16 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         title = "iGame"
+        
         setupCollectionView()
         configureDataSource()
         applyInitialSnapshot()
+        setupObservers()
         
         Task {
-            guard !isRequestInFlight else { return }
-            await fetchData(page: currentPage, isFirstLoad: true)
+            await viewModel.fetchData()
         }
         
     }
@@ -81,52 +82,33 @@ class HomeViewController: UIViewController {
     private func applyInitialSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Int, HomeViewCellModel>()
         snapshot.appendSections([0])
-        snapshot.appendItems([
-            HomeViewCellModel(item: nil),
-            HomeViewCellModel(item: nil),
-            HomeViewCellModel(item: nil)
-        ])
+        snapshot.appendItems(viewModel.items)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     
-    private func applySnapshot(with newItems: [HomeViewCellModel], isFirstLoad: Bool) {
-        let snapshot = dataSource.snapshot()
-        var items = snapshot.itemIdentifiers(inSection: 0)
-        if isFirstLoad {
-            items = newItems
-        } else {
-            items += newItems
-        }
-        var newSnapshot = NSDiffableDataSourceSnapshot<Int, HomeViewCellModel>()
-        newSnapshot.appendSections([0])
-        newSnapshot.appendItems(items)
-        dataSource.apply(newSnapshot)
-    }
-    
-    private func fetchData(page: Int, isFirstLoad: Bool) async {
-        isRequestInFlight = true
-        let results = await homeService.getGames(page: page)
-        switch results {
-        case .success(let lists):
-            self.isRequestInFlight = false
-            if let results = lists.results {
-                let items: [HomeViewCellModel] = results.map { game in
-                    return .init(item: game)
-                }
-                applySnapshot(with: items, isFirstLoad: isFirstLoad)
+    private func setupObservers() {
+        
+        viewModel.$items
+            .sink { [weak self] items in
+                guard let self else { return }
+                self.applySnapshot(with: items)
             }
-        default:
-            self.isRequestInFlight = false
-            break
-        }
+            .store(in: &cancellables)
+        
     }
     
+    private func applySnapshot(with newItems: [HomeViewCellModel]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, HomeViewCellModel>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(newItems)
+        dataSource.apply(snapshot)
+    }
 }
 
 extension HomeViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedGameViewModel = dataSource.snapshot().itemIdentifiers[indexPath.row]
+        let selectedGameViewModel = viewModel.items[indexPath.row]
         if
             let game = selectedGameViewModel.item,
             let id = game.id {
@@ -136,16 +118,7 @@ extension HomeViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let totalItems = dataSource.snapshot().numberOfItems(inSection: 0)
-        guard
-            !isRequestInFlight,
-            totalItems > 3,
-            totalItems - indexPath.row == 2
-        else { return }
-        currentPage += 1
-        Task {
-            await fetchData(page:currentPage, isFirstLoad: currentPage == 1)
-        }
+        viewModel.checkIfEnableFetchData(currentRow: indexPath.row)
     }
     
 }

@@ -24,7 +24,7 @@ class MainViewController: UITabBarController {
     func setupTabBarItem() -> [UIViewController] {
         
         // Create your view controllers here
-        let viewController1 = UINavigationController(rootViewController: HomeViewController(service: networkService))
+        let viewController1 = UINavigationController(rootViewController: HomeViewController())
         viewController1.navigationBar.prefersLargeTitles = true
 
         let vc = UIViewController()
