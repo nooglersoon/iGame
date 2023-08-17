@@ -80,8 +80,8 @@ class GameDetailViewModel {
         if isFavorite {
             if let gameModel {
                 viewContext.delete(gameModel)
-                isFavorite = false
             }
+            isFavorite = false
         } else {
             let favoriteGame = GameModel(context: viewContext)
             favoriteGame.id = Int16(Int(game.id ?? 0))

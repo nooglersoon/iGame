@@ -12,8 +12,22 @@ class MockHomeService: HomeServiceable {
     var mockResult: Result<GameList, RequestError> = .success(MockData.mockGameList())
 
     var getGamesCalled = false
+    
     func getGames(page: Int) async -> Result<GameList, RequestError> {
         getGamesCalled = true
+        return mockResult
+    }
+}
+
+// Mock GameDetailService for testing
+class MockGameDetailService: GameDetailServiceable {
+    var mockResult: Result<Game, RequestError> = .success(MockData.mockGame())
+
+    var getGamesCalled = false
+    var getGameByIdCalled = false
+    
+    func getGameById(_ id: Int) async -> Result<Game, RequestError> {
+        getGameByIdCalled = true
         return mockResult
     }
 }
@@ -67,6 +81,10 @@ struct MockData {
     
     static func mockGameList() -> GameList {
         return GameList(count: nil, next: nil, previous: nil, results: createMockGameArray(), seoTitle: nil, seoDescription: nil, seoKeywords: nil, seoH1: nil, noindex: nil, nofollow: nil, description: nil, filters: nil, nofollowCollections: nil)
+    }
+    
+    static func mockGame() -> Game {
+        return createMockGame(id: 1, name: "GTA 6", released: "2023-10-10", rating: 5.0, backgroundImage: "image")
     }
     
 }
