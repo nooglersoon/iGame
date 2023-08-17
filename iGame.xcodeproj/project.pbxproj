@@ -95,6 +95,7 @@
 		01CE48742A8DA36600A27D1B /* iGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		01CE48762A8DA36600A27D1B /* HomeViewControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerUITests.swift; sourceTree = "<group>"; };
 		01F8BCDF2A8DA76F00CDCAC8 /* FavoritesViewControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewControllerUITests.swift; sourceTree = "<group>"; };
+		01F8BCE12A8DB10800CDCAC8 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +151,7 @@
 				017A64A62A8B2BA000596474 /* Common */,
 				017A649C2A8B221100596474 /* Modules */,
 				017A64782A8B11FD00596474 /* Info.plist */,
+				01F8BCE12A8DB10800CDCAC8 /* Secrets.xcconfig */,
 			);
 			path = iGame;
 			sourceTree = "<group>";
@@ -506,6 +508,7 @@
 /* Begin XCBuildConfiguration section */
 		017A648F2A8B11FE00596474 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01F8BCE12A8DB10800CDCAC8 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -566,6 +569,7 @@
 		};
 		017A64902A8B11FE00596474 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01F8BCE12A8DB10800CDCAC8 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

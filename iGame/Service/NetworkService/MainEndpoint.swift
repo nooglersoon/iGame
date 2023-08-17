@@ -48,7 +48,7 @@ extension MainEndpoint: Endpoint {
     }
     
     var apiKey: String {
-        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "apiKey") as? String else {
+        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String else {
             return ""
         }
         return apiKey
