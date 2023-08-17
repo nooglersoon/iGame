@@ -38,12 +38,20 @@ extension MainEndpoint: Endpoint {
             return [
                 URLQueryItem(name: "page", value: "\(page)"),
                 URLQueryItem(name: "page_size", value: "10"),
-                URLQueryItem(name: "key", value: "d2f1740082ac4bfc8e0ad4f1ed969196")
+                URLQueryItem(name: "key", value: apiKey)
             ]
         case .getGameById:
             return [
-                URLQueryItem(name: "key", value: "d2f1740082ac4bfc8e0ad4f1ed969196")
+                URLQueryItem(name: "key", value: apiKey)
             ]
         }
-    }    
+    }
+    
+    var apiKey: String {
+        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "apiKey") as? String else {
+            return ""
+        }
+        return apiKey
+    }
+    
 }
