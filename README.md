@@ -31,7 +31,7 @@ Follow these instructions to get a copy of the project up and running on your lo
 ``` git clone https://github.com/nooglersoon/iGame.git ```
 2. Open the Xcode project
 3. Navigate to the project folder.
-4. Double-click on My Todo List.xcodeproj file.
+4. Double-click on iGame.xcodeproj file.
 5. Choose the desired simulator or a connected device.
 6. Since it'll need api key to access RAWG.IO api, I suggest you to create Secrets.xcconfig and add your api key with "API_KEY" as its key
 7. Build and run the app on the selected target.
