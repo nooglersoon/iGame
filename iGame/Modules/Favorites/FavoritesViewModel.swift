@@ -12,10 +12,10 @@ class FavoritesViewModel {
     
     @Published var isRequestInFlight: Bool = false
     @Published var currentPage: Int = 0
-    @Published var items: [HomeViewCellModel] = [
-        HomeViewCellModel(item: nil),
-        HomeViewCellModel(item: nil),
-        HomeViewCellModel(item: nil)
+    @Published var items: [CardCollectionViewCellModel] = [
+        CardCollectionViewCellModel(item: nil),
+        CardCollectionViewCellModel(item: nil),
+        CardCollectionViewCellModel(item: nil)
     ]
     
     var totalItems: Int {
@@ -57,7 +57,7 @@ class FavoritesViewModel {
         }
     }
     
-    private func updateItems(isFirstLoad: Bool, newItems: [HomeViewCellModel]) {
+    private func updateItems(isFirstLoad: Bool, newItems: [CardCollectionViewCellModel]) {
         if isFirstLoad {
             items = newItems
         } else {

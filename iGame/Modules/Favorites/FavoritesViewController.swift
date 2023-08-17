@@ -12,7 +12,7 @@ import Combine
 class FavoritesViewController: UIViewController {
     
     private var collectionView: UICollectionView!
-    private var dataSource: UICollectionViewDiffableDataSource<Int, HomeViewCellModel>!
+    private var dataSource: UICollectionViewDiffableDataSource<Int, CardCollectionViewCellModel>!
     
     private let viewModel: FavoritesViewModel = FavoritesViewModel()
     
@@ -75,7 +75,7 @@ class FavoritesViewController: UIViewController {
 private extension FavoritesViewController {
     
     func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Int, HomeViewCellModel>(collectionView: collectionView) {
+        dataSource = UICollectionViewDiffableDataSource<Int, CardCollectionViewCellModel>(collectionView: collectionView) {
             (collectionView, indexPath, game) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GameCardCell
             if let item = game.item {
@@ -86,14 +86,14 @@ private extension FavoritesViewController {
     }
     
     func applyInitialSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, HomeViewCellModel>()
+        var snapshot = NSDiffableDataSourceSnapshot<Int, CardCollectionViewCellModel>()
         snapshot.appendSections([0])
         snapshot.appendItems(viewModel.items)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     
-    func applySnapshot(with newItems: [HomeViewCellModel]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, HomeViewCellModel>()
+    func applySnapshot(with newItems: [CardCollectionViewCellModel]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, CardCollectionViewCellModel>()
         snapshot.appendSections([0])
         snapshot.appendItems(newItems)
         dataSource.apply(snapshot)

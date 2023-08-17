@@ -24,7 +24,7 @@
 		017A64B22A8B31CB00596474 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64B12A8B31CB00596474 /* HTTPClient.swift */; };
 		017A64B42A8B346E00596474 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64B32A8B346E00596474 /* Reachability.swift */; };
 		017A64B92A8B562900596474 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64B82A8B562900596474 /* NetworkService.swift */; };
-		017A64BE2A8B5FB300596474 /* HomeViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64BD2A8B5FB300596474 /* HomeViewCellModel.swift */; };
+		017A64BE2A8B5FB300596474 /* CardCollectionViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64BD2A8B5FB300596474 /* CardCollectionViewCellModel.swift */; };
 		017A64C02A8B6E7B00596474 /* GameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A64BF2A8B6E7B00596474 /* GameDetailViewController.swift */; };
 		018D948E2A8CB3CF00F5E77C /* PersistentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018D948D2A8CB3CF00F5E77C /* PersistentManager.swift */; };
 		018D94902A8CB5DF00F5E77C /* MainEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018D948F2A8CB5DF00F5E77C /* MainEndpoint.swift */; };
@@ -70,7 +70,7 @@
 		017A64B12A8B31CB00596474 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		017A64B32A8B346E00596474 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		017A64B82A8B562900596474 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		017A64BD2A8B5FB300596474 /* HomeViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCellModel.swift; sourceTree = "<group>"; };
+		017A64BD2A8B5FB300596474 /* CardCollectionViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCellModel.swift; sourceTree = "<group>"; };
 		017A64BF2A8B6E7B00596474 /* GameDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailViewController.swift; sourceTree = "<group>"; };
 		018D948D2A8CB3CF00F5E77C /* PersistentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentManager.swift; sourceTree = "<group>"; };
 		018D948F2A8CB5DF00F5E77C /* MainEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEndpoint.swift; sourceTree = "<group>"; };
@@ -156,7 +156,6 @@
 		017A649D2A8B221900596474 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				01CE48602A8CC01100A27D1B /* CellModel */,
 				017A64A02A8B223700596474 /* HomeViewController.swift */,
 				01CE485E2A8CB95D00A27D1B /* HomeViewModel.swift */,
 			);
@@ -194,6 +193,7 @@
 		017A64A72A8B2BA600596474 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				01CE48602A8CC01100A27D1B /* CellModel */,
 				017A64A22A8B236200596474 /* GameCardCell.swift */,
 				017A64A42A8B2A0800596474 /* RemoteUIImageView.swift */,
 				01CE48682A8D8F8F00A27D1B /* EmptyStateView.swift */,
@@ -256,7 +256,7 @@
 		01CE48602A8CC01100A27D1B /* CellModel */ = {
 			isa = PBXGroup;
 			children = (
-				017A64BD2A8B5FB300596474 /* HomeViewCellModel.swift */,
+				017A64BD2A8B5FB300596474 /* CardCollectionViewCellModel.swift */,
 			);
 			path = CellModel;
 			sourceTree = "<group>";
@@ -379,7 +379,7 @@
 				01CE48652A8CD1EE00A27D1B /* FavoritesViewController.swift in Sources */,
 				017A64B02A8B300300596474 /* RequestError.swift in Sources */,
 				017A64A52A8B2A0800596474 /* RemoteUIImageView.swift in Sources */,
-				017A64BE2A8B5FB300596474 /* HomeViewCellModel.swift in Sources */,
+				017A64BE2A8B5FB300596474 /* CardCollectionViewCellModel.swift in Sources */,
 				017A649B2A8B20FE00596474 /* GameListModel.swift in Sources */,
 				017A64722A8B11FC00596474 /* iGame.xcdatamodeld in Sources */,
 				01CE486D2A8D990B00A27D1B /* MockNetworkService.swift in Sources */,

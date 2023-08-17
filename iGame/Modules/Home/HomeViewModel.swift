@@ -11,10 +11,10 @@ class HomeViewModel {
     
     @Published var isRequestInFlight: Bool = false
     @Published var currentPage: Int = 0
-    @Published var items: [HomeViewCellModel] = [
-        HomeViewCellModel(item: nil),
-        HomeViewCellModel(item: nil),
-        HomeViewCellModel(item: nil)
+    @Published var items: [CardCollectionViewCellModel] = [
+        CardCollectionViewCellModel(item: nil),
+        CardCollectionViewCellModel(item: nil),
+        CardCollectionViewCellModel(item: nil)
     ]
     
     var totalItems: Int {
@@ -38,7 +38,7 @@ class HomeViewModel {
         case .success(let lists):
             self.isRequestInFlight = false
             if let results = lists.results {
-                let items: [HomeViewCellModel] = results.map { item in
+                let items: [CardCollectionViewCellModel] = results.map { item in
                     return .init(
                         item: .init(
                             title: item.name ?? "",
@@ -67,7 +67,7 @@ class HomeViewModel {
         }
     }
     
-    private func updateItems(isFirstLoad: Bool, newItems: [HomeViewCellModel]) {
+    private func updateItems(isFirstLoad: Bool, newItems: [CardCollectionViewCellModel]) {
         if isFirstLoad {
             items = newItems
         } else {
