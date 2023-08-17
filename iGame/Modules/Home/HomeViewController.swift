@@ -75,6 +75,7 @@ private extension HomeViewController {
         dataSource = UICollectionViewDiffableDataSource<Int, CardCollectionViewCellModel>(collectionView: collectionView) {
             (collectionView, indexPath, game) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GameCardCell
+            cell.accessibilityIdentifier = "cardCell"
             if let item = game.item {
                 cell.configure(with: .init(
                     title: item.title,
@@ -107,6 +108,7 @@ private extension HomeViewController {
         collectionView.backgroundColor = .white
         collectionView.delegate = self
         collectionView.register(GameCardCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.accessibilityIdentifier = "gamesCollectionViewIdentifier"
         view.addSubview(collectionView)
     }
     

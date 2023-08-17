@@ -33,9 +33,11 @@ class MainViewController: UITabBarController {
         
         // Create tab bar items
         let tabBarItem1 = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
+        tabBarItem1.accessibilityIdentifier = "homeTabItem"
         viewController1.tabBarItem = tabBarItem1
         
         let tabBarItem2 = UITabBarItem(title: "Favorite", image: UIImage(systemName: "heart"), tag: 1)
+        tabBarItem2.accessibilityIdentifier = "favoriteTabItem"
         viewController2.tabBarItem = tabBarItem2
         
         return [viewController1, viewController2]
