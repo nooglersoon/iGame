@@ -49,7 +49,9 @@ class RemoteImageView: UIImageView {
     
     func configure(with imageURL: URL) {
         loadImage(with: imageURL) { [weak self] image in
-            self?.image = image
+            DispatchQueue.main.async {
+                self?.image = image
+            }
         }
     }
     

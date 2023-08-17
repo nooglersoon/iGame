@@ -83,6 +83,13 @@ class GameCardCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        // Clear/reset the content of the image view
+        roundedImageView.image = nil
+    }
+    
     func configure(with model: GameCardCellModel) {
         titleLabel.text = model.title
         releaseDate.text = "Released on \(model.releaseDate)"
